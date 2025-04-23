@@ -1,5 +1,5 @@
-Memories (especially Flash, EEPROM, or OTP) are very sensitive to voltage noise, especially during programming (burning).
-A clean, stable 3.3V is critical when writing to memory — otherwise you can get:
+Memories (MTP, EEPROM, or OTP) are very sensitive to voltage noise, especially during programming (burning).
+A clean, stable 3.3V is critical when writing to memory, Or
 -Failed programming
 -Data corruption
 -Lower reliability over time
@@ -11,10 +11,11 @@ Internal LDOs almost always expect at least a small external capacitor (like 1μ
 
 cannot remove the LDO_3V3 pin — because:
 - It’s a test hook, critical to measuring internal timing.
-- Without the pin, you have no external way to observe when LDO_3V3 goes high.
+- Without the pin, we have no external way to observe when LDO_3V3 goes high.
 - delay measurement becomes impossible or unreliable.
-
-
+- Without the pin,  VLDO_3V3(UVLO_R),  VLDO_3V3(UVLO_F), ILDO_3V3(ILIMIT), LDO_1V5 Output Regulation 
+voltage becomes impossible to test
+ 
 It’s a test input — critical for ADC functionality.
 - can’t feed known voltages into the ADC
 - lose ability to validate ADC codes
