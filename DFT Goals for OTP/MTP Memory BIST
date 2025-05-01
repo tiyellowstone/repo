@@ -1,0 +1,39 @@
+DFT Goals for OTP/MTP Memory BIST
+
+implement logic that can:
+Read all 0’s
+Write/Read diagonal
+Write/Read checkerboard
+Write/Read inverse checkerboard
+Read all 1’s
+Perform marginal read tests
+Test Mode and Result Logger
+
+-------------------------------------------------------------------
+Implementation Strategy for Each Pattern
+
+1. Read All 0’s
+Assume OTP unprogrammed = 0.
+Just read all addresses and check that value == 0.
+
+2. Write/Read Diagonal
+For address (i,j), write 1 if i == j, else 0.
+After write, read back and compare.
+
+3. Write/Read Checkerboard
+If (address % 2) == 0, write 1; else write 0.
+Compare after read.
+
+4. Write/Read Inverse Checkerboard
+Same as checkerboard, but invert write pattern.
+
+5. Read All 1’s
+In OTP, simulate this only after programming. Read and expect 1.
+
+6. Marginal Read
+Adjusts slow/fast clock, low/high Vdd, or increased sense amp threshold.
+
+7. Test Mode and Result Logger
+tester communicates over I²C or SWD.
+Registers are exposed to trigger BIST, get results, and optionally read failing address.
+
